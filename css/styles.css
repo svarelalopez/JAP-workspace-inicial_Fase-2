@@ -188,3 +188,22 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* login */
+body {
+  background-color: rgb(248, 249, 250);
+}
+.cuadro {
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#error{
+  color: rgb(223, 35, 35);
+}
+
+/* index */
+#cerrarsesion{
+  color:#6c757d;
+  border-radius: 10px;
+      }
