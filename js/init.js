@@ -45,24 +45,24 @@ let getJSONData = function(url){
 function iralogin() {
 
   // ALERTA SIMPLE:
-      alert("Debe iniciar sesión para utilizar el sitio")
+      // alert("Debe iniciar sesión para utilizar el sitio")
       location.href = "login.html"
 
-  // Swal.fire({
-  //     title: 'Se ha cerrado la sesión',
-  //     text: "Debe iniciar sesión para utilizar el sitio",
-  //     icon: 'warning',
-  //     showCancelButton: false,
-  //     confirmButtonColor: '#229fbc',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Iniciar sesión'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //         location.href = "login.html"
-  //     } else{
-  //         location.href = "login.html"
-  //     }
-  //   })
+  Swal.fire({
+      title: 'Se ha cerrado la sesión',
+      text: "Debe iniciar sesión para utilizar el sitio",
+      icon: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#229fbc',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iniciar sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+          location.href = "login.html"
+      } else{
+          location.href = "login.html"
+      }
+    })
 } 
 
 function botonusuario() {
