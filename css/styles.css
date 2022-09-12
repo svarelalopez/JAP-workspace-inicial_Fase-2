@@ -202,8 +202,12 @@ body {
   color: rgb(223, 35, 35);
 }
 
-/* index */
-#cerrarsesion{
+/* index para botón de cerrar sesión*/
+/* #cerrarsesion{
   color:#6c757d;
   border-radius: 10px;
-      }
+      } */
+
+abbr { 
+  text-decoration: none !important;
+  }
