@@ -10,6 +10,8 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -38,13 +40,62 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+  <main class="pb-5 container">
+    <div id="infoDelProducto"></div>
+    <div>
+      <br><br>
+      <div class="text-left">
+          <h1>Comentarios</h1>
+      </div>
+      <div id="comentarios"></div>
+      <div class="text-left"><br>
+        <h4>Escribe un comentario...</h4>
+      </div>
+      <div id="comentar">
+
+          <div class="row">
+              <div class="col">
+                  <div class="d-flex w-100 justify-content-between">
+                      <div class="mb-1">
+
+                        <p></p>
+                        <div class="form">
+                          <textarea cols="80" height="10" class="form-control" id="userDesc"></textarea>
+                          <p></p>
+                        <h5>Calificación:</h5>
+
+                        <div class="puntuacion">
+                          <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                          --><label for="radio1"><i class="fas fa-star"></i></i></label><!--
+                          --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                          --><label for="radio2"><i class="fas fa-star"></i></i></label><!--
+                          --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                          --><label for="radio3"><i class="fas fa-star"></i></label><!--
+                          --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                          --><label for="radio4"><i class="fas fa-star"></i></label><!--
+                          --><input checked id="radio5" type="radio" name="estrellas" value="1"><!--
+                          --><label for="radio5"><i class="fas fa-star"></i></label><br>
+                        </div>
+
+                      </div><br>
+                      <button id="takeUserComent" class="btn btn-primary">Comentar</button><br>
+                      <label id="error"></label>
+                    </div>
+
+                  </div>
+              </div>
+
+        </div>`
+      </div>
+      <div class="container">
+        <div class="row" id="relacionados">
+          <h1>Relacionados</h1>
+        </div>
       </div>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

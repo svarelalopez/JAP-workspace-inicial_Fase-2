@@ -1,7 +1,11 @@
 let productsArray = [];  //array donde se cargarán los datos recibidos:
 
-//función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
-function showProductsList(array){ 
+function setProdID(id) {
+    localStorage.setItem("ProdID", id);
+    window.location = "product-info.html"
+}
+
+function showProductsList(array){       //función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
     let htmlContentToAppend = ""; //define una lista del contenido a mostrar que empieza vacía
 
     for(let i = 0; i < array.length; i++){ //recorre el JSON en cada categoría de la lista y la va agregando
@@ -9,7 +13,7 @@ function showProductsList(array){
 
         //estructura extraida de div categories.js modificada
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        <div onclick="setProdID(${products.id})" class="list-group-item list-group-item-action" >
             <div class="row">
                 <div class="col-3">
                     <img src=" ${products.image} " alt="$product image" class="img-thumbnail">
@@ -87,21 +91,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if (json.status === "ok")
         {
             productsArray = json.data.products; 
+            console.log(productsArray);
             showProductsList(productsArray);
         }
     });
-            // barra de busqueda
-    document.addEventListener("keyup", ()=>{
+            
+    document.addEventListener("keyup", ()=>{        // barra de busqueda
         buscar()
     })
-
-    
-            // filtrar por relevancia
-    document.getElementById("relevancia").addEventListener("click",()=>{ 
+    document.getElementById("relevancia").addEventListener("click",()=>{         // filtrar por relevancia
         relevancia()  //sortBy("soldCount", asc)
     })
-            //filtrar botones precio
-    document.getElementById("precioAsc").addEventListener("click",()=>{ 
+    document.getElementById("precioAsc").addEventListener("click",()=>{         //filtrar botones precio
         precioAsc()   // sortBy(cost, asc)
     })
     document.getElementById("precioDesc").addEventListener("click",()=>{ 
@@ -113,8 +114,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         filtrarPrecio();
     })
 
-            // Limpiar (mostrar todo)
-    document.getElementById("clearRangeFilter").addEventListener("click",()=>{
+    document.getElementById("clearRangeFilter").addEventListener("click",()=>{        // Limpiar (mostrar todo)
         showProductsList(productsArray);
     })
 });
