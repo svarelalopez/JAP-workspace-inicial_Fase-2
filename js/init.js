@@ -9,14 +9,14 @@ const AUTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 const EXT_TYPE = localStorage.getItem("catID") + ".json"; 
 const EXT_PROD_TYPE = localStorage.getItem("ProdID") + ".json"; 
 
+
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
-
 let hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
-
 let getJSONData = function(url){
     let result = {};
     showSpinner();
@@ -65,7 +65,6 @@ function iralogin() {
       }
     })
 } 
-
 function botonusuario() {
 
   let usuario = localStorage.getItem("usuario");
@@ -97,6 +96,10 @@ function botonusuario() {
     }else{
       iralogin()
   }
+}
+function setProdID(id) {
+  localStorage.setItem("ProdID", id);
+  window.location = "product-info.html"
 }
 
 

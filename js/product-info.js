@@ -4,11 +4,47 @@ let coments= [];
 function showProductInfo(array) {
     document.getElementById("infoDelProducto").innerHTML=
         `      <br><br>
-                <div class="text-left">
-                    <h1>${array.name}</h1>
+                    <div class="row">
+                    <div class="col">
+                    <div class="text-left">
+                        <h1>${array.name}</h1>
+                    </div>
+                    </div>
+                    <div class="col-2">
+                    <button id="addtocart" class="btn btn-primary  mt-1">Comprar</button>
+                    </div>
                 </div>
-                <br><hr>
+                <hr>
+        <div class="row">
+            <div class="col-6">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="${array.images[0]}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${array.images[1]}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${array.images[2]}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${array.images[3]}" class="d-block w-100">
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>           
+                </div>
+            </div> 
+        </div>
 
+            <div class="col-6">
                 <div>
                     <h4 >Precio</h4>
                     <p> ${array.currency} ${array.cost} </p>
@@ -25,36 +61,40 @@ function showProductInfo(array) {
                     <h4 >Cantidad de vendidos</h4>
                     <p> ${array.soldCount} </p>
                 </div>
-                <div>
-                    <h4 >Imágenes ilustrativas</h4>
-                    <br>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="${array.images[0]}" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="${array.images[1]}" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="${array.images[2]}" class="d-block w-100">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="${array.images[3]}" class="d-block w-100">
-                            </div>
-                            
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>           
-                        </div>
-                    </div> 
+                <br>
+            </div>
+        </div>`
+}
+        
 
-                </div>`
+function addToCart(array){
+    let localCartProds = JSON.parse(localStorage.getItem("cartProds"));
+    let ID = localStorage.getItem("ProdID");
+    if(localCartProds===null){localCartProds=[];}
+        console.log("localcartprods:"); console.log(localCartProds);
+
+        // console.log(localCartProds[0].includes(ID)); // ! includes da undefined
+        // console.log(ID);
+
+
+    let newItem = {};
+    newItem.id = ID;
+    newItem.name = array.name;
+    newItem.image =  array.images[0];
+    newItem.currency = array.currency;
+    newItem.unitCost =  array.cost;
+    newItem.count =  1;
+        // console.log(newItem);
+
+    localCartProds.push(newItem);
+    
+
+    localStorage.setItem("cartProds", JSON.stringify(localCartProds));
+
+        console.log("now includes:"); console.log(JSON.parse(localStorage.getItem("cartProds")));  
+    location.href = "cart.html"
+    
+
 }
 
 function puntuacion(score){
@@ -120,11 +160,6 @@ function addUserComent() {
     }
 
 }
-
-function setProdID(id) {
-    localStorage.setItem("ProdID", id);
-    window.location = "product-info.html"
-}
 function relatedProducts(array){
     let rels = ""; 
 
@@ -150,9 +185,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if (json.status === "ok")
         {
             productInfo = json.data; 
-            console.log(productInfo);
+            console.log("Product Info:"); (productInfo);
             showProductInfo(productInfo);
             relatedProducts(productInfo);
+
+            document.getElementById("addtocart").addEventListener("click", ()=>{
+                addToCart(productInfo);
+            })
         }
     });
 

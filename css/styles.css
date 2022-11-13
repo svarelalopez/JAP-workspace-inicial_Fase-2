@@ -244,3 +244,14 @@ abbr {
     .puntuacion input:checked ~ label {
     color: #f3e22c; 
     }
+
+    /* Chart.html */
+    @media (min-width: 1025px) {
+      .h-custom {
+      height: 100vh !important;
+      }
+      }
+
+  .gray{
+    color: #808080;
+  }
